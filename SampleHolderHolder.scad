@@ -1,10 +1,7 @@
 // Based on OpenSCAD example offset.scad
-
 $fn = 100;
 
 plate_thickness = 3;
-
-echo(version=version());
 
 module outline(wall = 1) {
   difference() {
@@ -13,19 +10,28 @@ module outline(wall = 1) {
   }
 }
 
-// offsetting with a positive value allows to create rounded corners easily
 linear_extrude(height = plate_thickness) {
-  offset(5) {
-    square([5, 25], center = true);
-  }
-    %square([5, 25], center = true);  
+    offset(1) { // offsetting with a positive value allows to create rounded corners easily
+        square([7.5, 50], center = true);
+        rotate([0,0,90]) square([7.5, 30], center = true);
+    }
 }
 
-
-translate([0, 0, plate_thickness]) {
-  linear_extrude(height = 5) {
-        outline(wall=0.5) circle(d=6.5);
-      }
+module hole_and_pin() { // Hole and pin
+    translate([0, 0, plate_thickness]) {
+    linear_extrude(height = 5) {
+            outline(wall=1) circle(d=7);
+        }
+    }
+    translate([0, 0, plate_thickness]) %cylinder(d = 6.25, h = 10);
 }
 
-%cylinder(d = 6.25, h = 20);
+translate([0,-20,0]) hole_and_pin();
+translate([0,-10,0]) hole_and_pin();
+translate([0,  0,0]) hole_and_pin();
+translate([0, 10,0]) hole_and_pin();
+translate([0, 20,0]) hole_and_pin();
+
+translate([-10, 0,0]) hole_and_pin();
+translate([  0, 0,0]) hole_and_pin();
+translate([ 10, 0,0]) hole_and_pin();
