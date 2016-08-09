@@ -1,21 +1,10 @@
-use <text_on.scad>
-
-$fn=64;
+$fn=100;
 bottom_pin_diameter = 6.25;
-height = 10;
-sphereradius = bottom_pin_diameter;
-
-module hollowout(wall = 1) {
-    difference() {
-        offset(wall) children();
-        offset(0) children();
-        }
-    }
 
 module sampleholder(cylinder_height,
                     cylinder_diameter,
                     wall_thickness=1,
-                    pin_height=10,
+                    pin_height=20,
                     squash_diameter=1,
                     squash_sphere=1) {
     // We use some "fancy" trigonometry to calculate the position of the sphere on top of the pin, namely:
@@ -59,16 +48,6 @@ module sampleholder(cylinder_height,
     }
         
 
-translate([ 0, 0, 0]) sampleholder(10, 10);
-translate([13, 0, 0]) rotate([0,0,45]) sampleholder(10, 10, squash_diameter=0.75);
-translate([25, 0, 0]) rotate([0,0,45]) sampleholder(10, 10, squash_diameter=0.50);
-translate([35, 0, 0]) rotate([0,0,45]) sampleholder(10, 10, squash_diameter=0.25);
-
-translate([ 0, 20, 0]) sampleholder(5, 15);
-translate([18, 20, 0]) rotate([0,0,45]) sampleholder(5, 15, squash_diameter=0.75);
-translate([30, 15, 0]) rotate([0,0,45]) sampleholder(5, 15, squash_diameter=0.50);
-translate([40, 12, 0]) rotate([0,0,45]) sampleholder(5, 15, squash_diameter=0.25);
-
-translate([10, 32, 0]) sampleholder(8, 7.5);
-translate([27, 30, 0]) sampleholder(8, 7.5, squash_diameter=0.75);
-translate([40, 25, 0]) sampleholder(8, 7.5, squash_diameter=0.50);
+translate([ 0, 0, 0]) sampleholder(4, 6.5);
+translate([12, 0, 0]) sampleholder(4, 8);
+translate([25, 0, 0]) sampleholder(4, 10);
