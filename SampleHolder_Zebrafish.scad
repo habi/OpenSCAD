@@ -1,9 +1,8 @@
 $fn=100;
-bottom_pin_diameter = 6.2;
 
 module sampleholder(cylinder_height,
                     cylinder_diameter,
-                    wall_thickness=1,
+                    wall_thickness=1.5,
                     pin_height=20,
                     ) {
     difference() { // Cut out cylinder with given diameter from cylinder with given diameter plus wall thickness
