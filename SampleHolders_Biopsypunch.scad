@@ -22,12 +22,12 @@ module sampleholder(cylinder_height,
         
 for (x = [0:10: 30]) {
     for (y = [0:10:20]) {
-        translate([x,y,0]) sampleholder(10, 4, wall_thickness=0.75);
+        translate([x,y,0]) sampleholder(20, 4, wall_thickness=0.75);
         }
     for (y = 20) {
-        translate([x,y,0]) sampleholder(10, 4, wall_thickness=1);
+        translate([x,y,0]) sampleholder(20, 4, wall_thickness=1);
         }        
     for (y = 30) {
-        translate([x,y,0]) sampleholder(10, 4, wall_thickness=1.25);
+        translate([x,y,0]) sampleholder(20, 4, wall_thickness=1.25);
         }                
     }
