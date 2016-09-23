@@ -20,7 +20,7 @@ linear_extrude(height = plate_thickness) {
 module hole_and_pin(pin_height=10) { // Hole and pin
     translate([0, 0, plate_thickness]) {
         linear_extrude(height=pin_height) {
-            outline() circle(d=6.5);
+            outline() circle(d=6.6);
             }
         }
     translate([0, 0, plate_thickness]) %cylinder(d = 6.25,h=pin_height+1);
