@@ -34,14 +34,14 @@ module cover(diameter=cylinder_diameter, wall=wall_thickness, lid_height=2, nibb
         }
     }
 
-module holder(cylinder_height=15, inner_diameter=cylinder_diameter, squash=0.618) {
+module holder(cylinder_height=15, inner_diameter=cylinder_diameter, squash=0.518) {
     translate([0, 0, plate_thickness]) {
         scale([1,squash,1])
         linear_extrude(height=cylinder_height) {
             outline() circle(d=inner_diameter);
             }
         }
-    translate([0,0,plate_thickness+cylinder_height+4]) scale([1,squash,1]) cover();
+    translate([0,0,plate_thickness+cylinder_height+5]) scale([1,squash,1]) cover();
     }
 
 difference() {    
@@ -49,19 +49,19 @@ difference() {
         rotate([0,0,angle]) translate([cylinder_diameter-3.5*wall_thickness, 0, 0]) holder();
         }
     // remove central part so that we can actually put the covers on...
-    translate([0,0,14.5]) {cylinder(d=11, h=2.5);}    
+    translate([0,0,14.25]) {cylinder(d=8, h=3);}    
 }
 
 // Cylinder markers 
-markerdiameter=1.5;
+markerdiameter=1.75;
 for (counter=[0:1:4]) {
 	for (angle=[0:72:359-counter*72]) {
-		rotate([0,0,angle]) translate([0.4*cylinder_diameter+counter*markerdiameter, 0, plate_thickness]) cylinder(d=markerdiameter,h=1);
+		rotate([0,0,angle]) translate([0.5*cylinder_diameter+counter*markerdiameter, 0, -0.9]) cylinder(d=markerdiameter,h=1);
 		}
 	}
     
 for (counter=[0:1:4]) {
 	for (angle=[0:72:359-counter*72]) {
-		rotate([0,0,angle+25+counter*5*markerdiameter-8*markerdiameter]) translate([1.2*cylinder_diameter, 0, plate_thickness]) cylinder(d=markerdiameter,h=1);
+		rotate([0,0,angle+25+counter*5*markerdiameter-8*markerdiameter]) translate([1.1*cylinder_diameter, 0, plate_thickness]) cylinder(d=markerdiameter,h=1);
 		}
 	}	

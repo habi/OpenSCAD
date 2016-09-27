@@ -48,6 +48,6 @@ module sampleholder(cylinder_height,
     }
         
 
-translate([ 0, 0, 0]) sampleholder(4, 6.5);
+translate([ 0, 0, 0]) sampleholder(30, 25);
 translate([12, 0, 0]) sampleholder(4, 8);
 translate([25, 0, 0]) sampleholder(4, 10);
