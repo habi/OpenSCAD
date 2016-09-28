@@ -46,22 +46,27 @@ module holder(cylinder_height=15, inner_diameter=cylinder_diameter, squash=0.518
 
 difference() {    
     for (angle=[0:72:359]) {
-        rotate([0,0,angle]) translate([cylinder_diameter-3.5*wall_thickness, 0, 0]) holder();
+        rotate([0,0,angle]) translate([cylinder_diameter-4.1*wall_thickness, 0, 0]) holder();
         }
-    // remove central part so that we can actually put the covers on...
-    translate([0,0,14.25]) {cylinder(d=8, h=3);}    
+    // "Drill" out central part so that we can actually put the lids on, and make separation walls
+    translate([0,0,plate_thickness]) {cylinder(d=9, h=16);}    
 }
+// Separation wall
+for (angle=[0:72:359]) {
+        rotate([0,0,angle+19]) translate([-0.5, -0.5, 0]) cube([1,5.5,14], center=false);
+        }
 
 // Cylinder markers 
 markerdiameter=1.75;
+// below the plate
 for (counter=[0:1:4]) {
 	for (angle=[0:72:359-counter*72]) {
-		rotate([0,0,angle]) translate([0.5*cylinder_diameter+counter*markerdiameter, 0, -0.9]) cylinder(d=markerdiameter,h=1);
+		rotate([0,0,angle]) translate([0.45*cylinder_diameter+counter*markerdiameter, 0, -0.9]) cylinder(d=markerdiameter,h=1);
 		}
 	}
-    
+// at the sides of the cylinders    
 for (counter=[0:1:4]) {
 	for (angle=[0:72:359-counter*72]) {
-		rotate([0,0,angle+25+counter*5*markerdiameter-8*markerdiameter]) translate([1.1*cylinder_diameter, 0, plate_thickness]) cylinder(d=markerdiameter,h=1);
+		rotate([0,0,angle+27+counter*5*markerdiameter-8*markerdiameter]) translate([1.1*cylinder_diameter, 0, plate_thickness]) cylinder(d=markerdiameter,h=1);
 		}
 	}	
