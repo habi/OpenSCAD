@@ -5,7 +5,7 @@ module sampleholder(cylinder_height,
                     cylinder_diameter_bottom,
                     cylinder_diameter_top,
                     squash=0.6,
-                    wall_thickness=1.5,
+                    wall_thickness=1.5, // gets added to diameter, so at 1.5, the wall thickness is 0.75 mm
                     pin_height=20,
                     ) {
     difference() { // Cut out cylinder with given diameter from cylinder with given diameter plus wall thickness
