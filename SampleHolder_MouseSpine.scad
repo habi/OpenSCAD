@@ -1,13 +1,14 @@
 $fn=100;
-scalefactor = 0.8;
+pin_height=10;
 bottom_radius = 3.5;
 bottom_height = 50;
 taper_height=7;
 top_radius = 6;
 top_height = 13;
+scalefactor = 0.8;
 
-cylinder(d=6.1,h=15); // bottom pin
-translate([0,0,15]){ // shift everything else above the bottom pin
+cylinder(d=6.15,h=pin_height); // bottom pin
+translate([0,0,pin_height]){ // shift everything else above the bottom pin
     difference() { // use this 'difference' as "drill"
         union(){ // collect all parts
             cylinder(r=bottom_radius,h=bottom_height); // cylinder for spine
