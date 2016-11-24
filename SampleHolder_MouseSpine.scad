@@ -1,9 +1,9 @@
 $fn=100;
 pin_height=10;
-bottom_radius = 3.5;
+bottom_radius = 4;
 bottom_height = 50;
 taper_height=7;
-top_radius = 6; // radius of the head part
+top_radius = 8; // radius of the head part
 top_height = 13;
 
 module thing(scalefactor=1) {
