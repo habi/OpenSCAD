@@ -1,15 +1,33 @@
 $fn=100;
 diameter = 60;
-height= 30;
-dice_lenght = 17;
+height= 40;
+dice_lenght = 19;
 wall_thickness=4;
 
-difference() {
-    hull() { //outer shell
-        cylinder(d=diameter+wall_thickness, h=height+wall_thickness, center=true);
-        translate([0.5*(diameter+sqrt(dice_lenght)),0.5*(diameter+sqrt(dice_lenght)),0.5*dice_lenght-0.5*wall_thickness]) rotate([0,0,45])  cube([dice_lenght+wall_thickness,dice_lenght+wall_thickness,dice_lenght+wall_thickness],center=true);
+// card holder
+difference(){
+    // box
+    cube([diameter+wall_thickness,diameter+wall_thickness,height+wall_thickness],center=true);
+    // hole
+    union(){
+        #cylinder(d=diameter, h=height, center=true);
+        #translate([0.5*diameter,0,0]) cube([diameter,diameter,height],center=true);
     }
-    #translate([0,0,wall_thickness])cylinder(d=diameter, h=height, center=true);
-    #translate([0.45*(diameter+sqrt(dice_lenght)),0.45*(diameter+sqrt(dice_lenght)),0.5*dice_lenght]) rotate([0,0,45])  cube([dice_lenght,dice_lenght,dice_lenght],center=true);
-
+}
+// cover
+shrink=2;
+translate([0,0,2*wall_thickness+height]) {
+    difference(){
+        // actual cover
+        union(){
+            // "stamp"
+            translate([0.5*diameter,0,0]) cube([0.8*(diameter-shrink),diameter-shrink,height],center=true);
+            // rim
+            #translate([0.5*(diameter+wall_thickness),-0.5*(diameter+wall_thickness),-0.5*(height+wall_thickness)]) cube([0.5*(diameter)-2*wall_thickness,diameter+wall_thickness,height+wall_thickness]);    
+            }
+        // cards
+        cylinder(d=diameter, h=height, center=true);
+        // dice hole
+        rotate([0,0,22.5]) translate([0.4*(diameter+dice_lenght),0,0]) cube([2*dice_lenght,dice_lenght,dice_lenght],center=true);
+    }
 }
