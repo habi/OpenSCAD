@@ -1,6 +1,6 @@
 $fn=100;
-bottom_pin_diameter = 6.2;
 
+use<bottom_pin.scad>
 module sampleholder(cylinder_height,
                     cylinder_diameter_bottom,
                     cylinder_diameter_top,
@@ -10,7 +10,7 @@ module sampleholder(cylinder_height,
                     ) {
     difference() { // Cut out cylinder with given diameter from cylinder with given diameter plus wall thickness
         union() { // Collect the bottom pin and the cylinder
-            cylinder(d=6.25, h=pin_height+2); // Bottom pin
+            pin(height=pin_height+2); // Bottom pin
             scale([1, squash, 1]) { // squash the cylinder height if desired
                 translate([0,0,pin_height]) { // Move the actual holder cylinder up
                     cylinder(d1=cylinder_diameter_bottom+wall_thickness, d2=cylinder_diameter_top+wall_thickness, h=15);
@@ -47,7 +47,5 @@ module cover(cylinder_diameter_top, squash, wall_thickness=1.5, lid_height=3, ni
     
 top_diameter=20;
 squash=0.618;
-rotate([0,-125,90]) {
 sampleholder(30, 6.2, top_diameter, squash);
 translate([0,0,70]) cover(top_diameter, squash);
-        }

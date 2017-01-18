@@ -1,6 +1,8 @@
 // Extrusion based on OpenSCAD example offset.scad
 $fn = 100;
 
+use <bottom_pin.scad>
+
 cylinder_diameter=10;
 wall_thickness=1;
 plate_thickness=1.5;
@@ -13,7 +15,7 @@ module outline(wall=wall_thickness) {
 }
 
 // Bottom pin
-translate([0,0,-20]) cylinder(d=6.2, h=20);
+translate([0,0,-20]) pin(height=20);
 // Bottom plate
 difference() {
     linear_extrude(height=plate_thickness) circle(1.25*cylinder_diameter, center = true);

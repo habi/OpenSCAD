@@ -1,7 +1,6 @@
 $fn=100;
-bottom_pin_diameter = 6.2;
 
-module sampleholder() {}
+use <bottom_pin.scad>
 
 x=15;
 y=15;
@@ -36,7 +35,7 @@ difference() {
             for (a=[0:45:180]) {
                 rotate([0,0,a]) cube([diameter+wall_thickness, 1, 2], center=true);
             }
-            translate([0,0,-9]) cylinder(d=6.25, h=20, center=true);
+            translate([0,0,-19]) pin(height=20);
         }
     }
     translate([-2,0.5*cos(angle)*y,14]) #cube([15,25,15], center=true);
