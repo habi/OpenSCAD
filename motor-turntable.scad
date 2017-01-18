@@ -14,8 +14,9 @@ difference(){
     translate([sqrt(25-3)*2,sqrt(25-3)*2,2]) #cylinder(d=3,h=3);
 }
 //rotation blocker
-height=15; 
-translate([17,0,height/2]) cube([2,30,height], center=true);
+height=18; 
+translate([16,2.5,height/2]) cube([2,5,height], center=true);
+translate([16,-12.5,height/2]) cube([2,5,height], center=true);
 
 //turntable
 translate([0,0,height+2]){
@@ -31,7 +32,7 @@ translate([0,0,height+2]){
     translate([0,0,-4.5]) {
         difference(){
             cylinder(d=8, h=5);
-            cylinder(d=6, h=5);
+            cylinder(d=5.5, h=5);
         }        
     }
 }
