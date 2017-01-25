@@ -2,7 +2,7 @@
 use <gopro_mounts_mooncactus.scad>
  
 wall_thickness=2;
-width = 18;
+width = 18.5;
 length = 42;
 //temporary cutaways
 difference() {
@@ -30,19 +30,19 @@ difference() {
             #translate([length-from_end,(width/2)-(latch_width/2),wall_thickness-hole_depth]) cube([notch_length,latch_width,2*hole_depth]);
         }
         // side walls
-        wall_height=10;
+        wall_height=9;
         rotate([90,00,0]) cube([length,wall_height,wall_thickness]);
         translate([0, width+wall_thickness, 0]) rotate([90,0,0]) cube([length,wall_height,wall_thickness]);
         // lips
-        lip_thickness=2.3;
-        lip_depth=2.3;
-        shift=2.3;
+        lip_thickness=2.0;
+        lip_depth=2.0;
+        shift=2.7;
         translate([0,0,wall_thickness+shift]) cube([length,lip_depth,lip_thickness]);
         translate([0,width-wall_thickness,wall_thickness+shift]) cube([length,lip_depth,lip_thickness]);
         // front wall
         translate([-wall_thickness,-wall_thickness,0]) cube([wall_thickness,width+2*wall_thickness,wall_height]);
     }
     translate([0,0,-12]) cube([100,50,25], center=true);
-    translate([18,-5,-12]) cube([25,20,50], center=true);
-    translate([18,23,-12]) cube([25,20,50], center=true);
+    #translate([19,-5,4]) cube([27,22,15], center=true);
+    #translate([19,23,4]) cube([27,22,15], center=true);
 }
