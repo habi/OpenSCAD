@@ -34,9 +34,9 @@ difference() { // (temporary) cutaways
         rotate([90,00,0]) cube([length,wall_height,wall_thickness]);
         translate([0, width+wall_thickness, 0]) rotate([90,0,0]) cube([length,wall_height,wall_thickness]);
         // lips
-        lip_thickness=1.8;
+        lip_thickness=1.5;
         lip_depth=2;
-        shift=2.8;
+        shift=3.2;
         translate([0,0,wall_thickness+shift]) cube([length-4,lip_depth,lip_thickness]);
         translate([0,width-wall_thickness,wall_thickness+shift]) cube([length-4,lip_depth,lip_thickness]);
         // front wall
