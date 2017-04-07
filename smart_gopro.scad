@@ -1,7 +1,7 @@
 // Download the GoPro connector file at http://www.thingiverse.com/thing:62800/zip and put ../files/gopro_mounts_mooncactus.scad in the same folder as this file
 use <gopro_mounts_mooncactus.scad>
 
-$fn=100; 
+$fn=10; 
 wall_thickness=2;
 width = 18.6;
 length = 42;
@@ -47,12 +47,4 @@ difference() { // (temporary) cutaways
     //#translate([-wall_thickness,-wall_thickness,-25]) cube([length+wall_thickness,width+2*wall_thickness,25]);
     //#translate([19,-5,4]) cube([27,22,15], center=true);
     //#translate([19,23,4]) cube([27,22,15], center=true);
-    // make some nice holes
-    for (i=[1:3]) {
-        #translate([10*i,wall_thickness-2,5]) rotate([90, 0, 0])cylinder(d=5,h=5, center=true);
-        #translate([10*i,wall_thickness-2+width,5]) rotate([90, 0, 0])cylinder(d=5,h=5, center=true);
-    #rotate([-90, 0, 90]) translate([width/2, -wall_height/2, wall_thickness-1])  linear_extrude(1.5) text("Achtung!", size = 3, halign="center", valign="center");
-    #translate([length-12, width/2, 1.5]) rotate([180+7, 0, -90]) linear_extrude(3) text("Faaahre!", size = 3, halign="center", valign="center");
-    #translate([length-19, width/2, 1]) rotate([180+7, 0, -90]) linear_extrude(3) text("\u263A", size = 10, halign="center", valign="center");
-    }
 }
