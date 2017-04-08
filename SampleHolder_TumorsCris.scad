@@ -1,6 +1,8 @@
 // Extrusion based on OpenSCAD example offset.scad
 $fn = 100;
 
+use <bottom_pin.scad>
+
 cylinder_diameter=10;
 wall_thickness=1;
 plate_thickness=1.5;
@@ -13,7 +15,7 @@ module outline(wall=wall_thickness) {
 }
 
 // Bottom pin
-translate([0,0,-20]) cylinder(d=6.2, h=20);
+translate([0,0,-20]) pin(height=20);
 // Bottom plate
 difference() {
     linear_extrude(height=plate_thickness) circle(1.25*cylinder_diameter, center = true);
@@ -44,19 +46,19 @@ module holder(cylinder_height=15, inner_diameter=cylinder_diameter, squash=0.518
     translate([0,0,plate_thickness+cylinder_height+5]) scale([1,squash,1]) cover();
     }
 
-difference() {    
+difference() {
     for (angle=[0:72:359]) {
         rotate([0,0,angle]) translate([cylinder_diameter-4.1*wall_thickness, 0, 0]) holder();
         }
-    // "Drill" out central part so that we can actually put the lids on, and make separation walls
-    translate([0,0,plate_thickness]) {cylinder(d=9, h=16);}    
+    // "Drill" out the central part so that we can actually put the lids on, and make separation walls
+    translate([0,0,plate_thickness]) {cylinder(d=9, h=16);}
 }
 // Separation wall
 for (angle=[0:72:359]) {
         rotate([0,0,angle+19]) translate([-0.5, -0.5, 0]) cube([1,5.5,14], center=false);
         }
 
-// Cylinder markers 
+// Cylinder markers
 markerdiameter=1.75;
 // below the plate
 for (counter=[0:1:4]) {
@@ -64,9 +66,9 @@ for (counter=[0:1:4]) {
 		rotate([0,0,angle]) translate([0.45*cylinder_diameter+counter*markerdiameter, 0, -0.9]) cylinder(d=markerdiameter,h=1);
 		}
 	}
-// at the sides of the cylinders    
+// at the sides of the cylinders
 for (counter=[0:1:4]) {
 	for (angle=[0:72:359-counter*72]) {
 		rotate([0,0,angle+27+counter*5*markerdiameter-8*markerdiameter]) translate([1.1*cylinder_diameter, 0, plate_thickness]) cylinder(d=markerdiameter,h=1);
 		}
-	}	
+	}
