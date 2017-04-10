@@ -8,17 +8,15 @@ length = 42;
 wall_height=9;
 
 module taper(tpd=10, tpl=18) {
-scale([1.25,1,1]) {    
-    difference(){
-        
-        cube([tpd,tpd,tpl], center=true);   
-        cylinder(d=tpd, h=tpl, center=true);
-        translate([0,-tpd/2,0]) cube([tpd,tpd,tpl], center=true);
-        translate([tpd/2,0,0]) cube([tpd,tpd,tpl], center=true);
-        }
+    scale([1.25,1,1]) {
+        difference(){
+            cube([tpd,tpd,tpl], center=true);
+            cylinder(d=tpd, h=tpl, center=true);
+            translate([0,-tpd/2,0]) cube([tpd,tpd,tpl], center=true);
+            translate([tpd/2,0,0]) cube([tpd,tpd,tpl], center=true);
+            }
         }
     }
-
 
 difference() { // (temporary) cutaways
     union(){
@@ -56,7 +54,7 @@ difference() { // (temporary) cutaways
         lip_depth=2;
         shift=3.2;
         translate([0,0,wall_thickness+shift]) cube([length-4,lip_depth,lip_thickness]);
-        translate([0,width-wall_thickness,wall_thickness+shift]) cube([length-4,lip_depth,lip_thickness]);
+        translate([0,width-lip_depth,wall_thickness+shift]) cube([length-4,lip_depth,lip_thickness]);
         // front wall
         translate([-wall_thickness,-wall_thickness,0]) cube([wall_thickness,width+2*wall_thickness,wall_height]);
     }
@@ -64,7 +62,8 @@ difference() { // (temporary) cutaways
     //#translate([-wall_thickness,-wall_thickness,-25]) cube([length+wall_thickness,width+2*wall_thickness,25]);
     //#translate([19,-5,4]) cube([27,22,15], center=true);
     //#translate([19,23,4]) cube([27,22,15], center=true);
-    #rotate([-90, 0, 90]) translate([width/2, -wall_height/2, wall_thickness-2])  linear_extrude(1.5) text("Achtung!", size = 3, halign="center", valign="center");
+    // Add some text, for fun
+    #rotate([-90, 0, 90]) translate([width/2, -wall_height/2, wall_thickness-1])  linear_extrude(1.5) text("Achtung!", size = 3, halign="center", valign="center");
     #translate([length-12, width/2, 1.25]) rotate([180+7, 0, -90]) linear_extrude(3) text("Faaahre!", size = 3, halign="center", valign="center");
     #translate([length-19, width/2, 0.5]) rotate([180+7, 0, -90]) linear_extrude(3) text("\u263A", size = 10, halign="center", valign="center");    
 }
