@@ -1,26 +1,25 @@
 // Connector piece for the two flag pole pieces on the chariot
 $fn=100;
-innerdiameter=5;
-height=50;
+innerdiameter=7;
+height=20; // should be ~75, but we first do a test-print...
 difference() {
-    hull() { // 'hull' makes the tapered outer shell
-        union() { // 'union' to connect the cylinder and spokes together
-            cylinder(d=innerdiameter+3, h=height, center=true);
-            // spokes
-            for (angle =[0:45:180]) 
-                rotate([0,0,angle])
-                    cube([innerdiameter+7,1,10],center=true);
-            }
-        }
-        // central hole
-        #cylinder(d=innerdiameter, h=height+2, center=true);
+    for (angle =[0:45:180-45])
+        rotate([0,0,angle])
+            hull() { // 'hull' generates the tapered outer shell over the spokes
+                // spokes
+                cube([innerdiameter+7,0.5,10], center=true);
+                // outer cylinder (we probably should only generate it once, but the 'hull' is much prettier like this :)
+                cylinder(d=innerdiameter+3, h=height, center=true);
+                }
+        // central bore hole
+        #cylinder(d=innerdiameter, h=height+4, center=true);
     }
-// separator
+// inner middle separator
 for (angle =[0:45:180])
     rotate([0,0,angle])
         cube([innerdiameter,1,5],center=true);
-// friction stuff in the center
+// friction stuff around the hole
 for (angle =[0:120:360]) 
     rotate([0,0,angle])
         translate([innerdiameter/2,0,0])
-            cylinder(d=0.5, h=height, center=true);
+            cube([0.5,innerdiameter/2, height], center=true);
