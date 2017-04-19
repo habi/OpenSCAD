@@ -1,6 +1,6 @@
 // Connector piece for the two flag pole pieces on the chariot
 $fn=100;
-innerdiameter=7;
+innerdiameter=6.25;
 height=20; // should be ~75, but we first do a test-print...
 difference() {
     for (angle =[0:45:180-45])
@@ -17,7 +17,7 @@ difference() {
 // inner middle separator
 for (angle =[0:45:180])
     rotate([0,0,angle])
-        cube([innerdiameter,1,5],center=true);
+        cube([innerdiameter,1,3],center=true);
 // friction stuff around the hole
 for (angle =[0:120:360]) 
     rotate([0,0,angle])
