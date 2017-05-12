@@ -1,10 +1,12 @@
 use <bottom_pin.scad>;
-height=8;
-//bottom pin
-pin(height=height);
 
+//bottom pin
+pin(height=15);
 //box on top for the wood samples
+inner= 5;
+wall = 1.5;
+cubeheight = 10;
 difference(){
-    translate([0,0,height+3.5]) cube([7,7,7], center=true);
-    #translate([0,0,height+4]) cube([5,5,8], center=true);
+    translate([0,0,cubeheight/2-wall]) cube([inner+wall,inner+wall,cubeheight], center=true);
+    #translate([0,0,cubeheight/2]) cube([inner,inner,cubeheight+wall+wall], center=true);
 }
