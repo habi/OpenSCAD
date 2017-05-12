@@ -35,7 +35,7 @@ difference() {
             for (a=[0:45:180]) {
                 rotate([0,0,a]) cube([diameter+wall_thickness, 1, 2], center=true);
             }
-            translate([0,0,-19]) pin(height=20);
+            pin(height=20);
         }
     }
     translate([-2,0.5*cos(angle)*y,14]) #cube([15,25,15], center=true);

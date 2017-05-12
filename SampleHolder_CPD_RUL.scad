@@ -12,6 +12,6 @@ module hollowsphere(OuterRadius=5, WallThickness=1) {
 }
 
 // Bottom pin
-translate([0,0,-15]) pin(height=15);
+pin(height=15);
 // Squashed cup
 translate([0,0,3.5]) scale([0.75,1,1]) hollowsphere();
