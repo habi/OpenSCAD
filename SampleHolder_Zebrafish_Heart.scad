@@ -6,9 +6,9 @@ use <bottom_pin.scad>
 // Bottom pin
 pin(height=30);
 
-// receptable
-height=7;
-inner_radius=1;
+// Cup
+height=10;
+inner_radius=2.5;
 wall_thickness=0.5;
 difference() {
     cylinder(h=height, r=inner_radius+wall_thickness);
