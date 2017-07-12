@@ -1,27 +1,28 @@
 // Connector piece for the two flag pole pieces on the chariot
 $fn=100;
-innerdiameter=6.7;
+innerdiameter=6.6;
 height=60; // was around ~75
 difference() {
     union() {
-        for (angle =[0:45:180-45])
+        for (angle =[0:60:180-60])
         rotate([0,0,angle])
             hull() { // 'hull' generates the tapered outer shell over the spokes
                 // spokes
-                cube([innerdiameter+7,0.5,10], center=true);
+                cube([innerdiameter+14,2,15], center=true);
                 // outer cylinder (we probably should only generate it once, but the 'hull' is much prettier like this :)
-                cylinder(d=innerdiameter+3, h=height, center=true);
-                }
-        sphere(d=19);
-        translate([0,0,5]) sphere(d=17);
-        translate([0,0,10]) sphere(d=15);
-        translate([0,0,-5]) sphere(d=17);
-        translate([0,0,-10]) sphere(d=15);                
-            }
+                cylinder(d=innerdiameter+2, h=height, center=true);
+              }
+            }            
         // central bore hole
         #cylinder(d=innerdiameter, h=height+4, center=true);
-                
     }
+// rings
+for (tr=[-5:5:5])
+    translate([0,0,tr]) rotate_extrude(convexity=10) translate([innerdiameter+2.85, 0, 0]) circle(r = 1);
+for (tr=[-10,10])
+    translate([0,0,tr]) rotate_extrude(convexity=10) translate([innerdiameter+2.1, 0, 0]) circle(r = 1);
+for (tr=[-15,15])
+    translate([0,0,tr]) rotate_extrude(convexity=10) translate([innerdiameter+0.75, 0, 0]) circle(r = 1);
 // inner middle separator
 for (angle =[0:60:180-60])
     rotate([0,0,angle])
