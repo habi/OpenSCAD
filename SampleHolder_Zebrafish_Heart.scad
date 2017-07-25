@@ -4,13 +4,13 @@ $fn = 100;
 use <bottom_pin.scad>
 
 // Bottom pin
-pin(height=30);
+pin(height=25);
 
 // Cup
 height=10;
-inner_radius=2.5;
-wall_thickness=0.5;
+inner_radius=1.5;
+wall_thickness=0.3;
 difference() {
-    cylinder(h=height, r=inner_radius+wall_thickness);
-    translate([0,0,1]) cylinder(h=height, r=inner_radius);
+    cylinder(h=height, r1=inner_radius+wall_thickness, r2=inner_radius+wall_thickness+1);
+    translate([0,0,1]) cylinder(h=height, r1=inner_radius, r2=inner_radius+1);
 }
