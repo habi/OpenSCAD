@@ -1,23 +1,22 @@
 $fn=100;
 
-// Small lens
-lens1_diameter=1;
-hole1_diameter=lens1_diameter+0.25;
-difference(){
-    holder100(1);
-    for (diameter =[1:0.2:2])
-        translate([-10+20*diameter,2,5]) rotate([90,0,0]) #cylinder(d=diameter, h=5, center=true);
-}
+//// Small lens
+//lens1_diameter=1;
+//hole1_diameter=lens1_diameter+0.25;
+//difference(){
+//    holder100(1);
+//    for (diameter =[1:0.2:2])
+//        translate([-10+20*diameter,2,5]) rotate([90,0,0]) #cylinder(d=diameter, h=5, center=true);
+//}
 
 // Big lens
 lens2_diameter=3.5;
-hole2_diameter=lens2_diameter+0.5;
+hole2_diameter=lens2_diameter+0.3;
 translate([0,25,0]) {
     difference(){
         holder300(1);
         // Lens
-        for (diameter =[3.5:0.25:4.5])
-            translate([-61+(20*diameter),2,5]) rotate([90,0,0]) #cylinder(d=diameter, h=5, center=true);
+        translate([24,1.5,5]) rotate([90,0,0]) #cylinder(d=hole2_diameter, h=5, center=true);
         }
     }
     
