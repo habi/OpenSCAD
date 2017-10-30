@@ -15,7 +15,8 @@ module outline(wall=wall_thickness) {
 }
 
 // Bottom pin
-translate([0,0,-20]) pin(height=20);
+pin(height=20);
+
 // Bottom plate
 difference() {
     linear_extrude(height=plate_thickness) circle(1.25*cylinder_diameter, center = true);
