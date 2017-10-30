@@ -1,42 +1,45 @@
 // Hupe-ans-LIKEaBike-MontierDings
 
-$fn=25;
+$fn=100;
 
 width=25;
 oringdiameter=0.5;
-ropediameter = 2.5;
+ropediameter = 2;
+squash = 1.4;
 
 module hupirohr(){
     // Rohr
-    #cylinder(d=15,h=40, center=true);
+    rohrdurchmesser=13.1;
+    #cylinder(d=rohrdurchmesser,h=50, center=true);
     // Nut für O-Ringe
-    #translate([0,0,5]) rotate_extrude() translate([15/2, 0, 0]) circle(r = oringdiameter);    
-    #translate([0,0,-5]) rotate_extrude() translate([15/2, 0, 0]) circle(r = oringdiameter);
+    #translate([0,0,5]) rotate_extrude() translate([rohrdurchmesser/2, 0, 0]) circle(r = oringdiameter);    
+    #translate([0,0,-5]) rotate_extrude() translate([rohrdurchmesser/2, 0, 0]) circle(r = oringdiameter);
     }
 
 module schnur(){
     // Nut fürs anbinden
-    diameter=17;
+    diameter=16;
+    angle=35;
     translate([0,3,0]){
-        #rotate([0,45,0]) translate([0,0,0]) rotate_extrude() translate([diameter, 0, 0]) circle(r = ropediameter);
-        #rotate([0,-45,0]) translate([0,0,0]) rotate_extrude() translate([diameter, 0, 0]) circle(r = ropediameter);
+        #rotate([0,angle,0]) translate([0,0,0]) rotate_extrude() translate([diameter, 0, 0]) circle(r = ropediameter);
+        #rotate([0,-angle,0]) translate([0,0,0]) rotate_extrude() translate([diameter, 0, 0]) circle(r = ropediameter);
         }
     }
 
 // Flache Seite am Lenker
 difference(){
-    translate([0,width/4,0]) cube([width+3,width/2,30], center=true);
-    schnur();
+    translate([0,width/4,0]) cube([width*1.4,width/2,width], center=true);
+    scale([squash,10,1]) schnur();
     hupirohr();
 }
 
 // Andere Seite
 translate([width*0,-5,0]){ // Chli verschieben, damits gäbig geht mit drucken
     difference(){
-        cylinder(d=width,h=30, center=true);
-        schnur();
+        scale([squash,1,1]) cylinder(d=width,h=30, center=true);
+        scale([squash,1,1]) schnur();
         hupirohr();
         // Untere Hälfte wegschneiden
-        # translate([0,width/4,0]) cube([width+3,width/2,30], center=true);
+        scale([squash,1,1]) # translate([0,width/4,0]) cube([width+3,width/2,30], center=true);
         }
     }
