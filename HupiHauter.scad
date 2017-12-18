@@ -3,6 +3,7 @@
 $fn=100;
 
 width=25;
+length=30;
 oringdiameter=0.5;
 ropediameter = 2;
 squash = 1.4;
@@ -28,18 +29,18 @@ module schnur(){
 
 // Flache Seite am Lenker
 difference(){
-    translate([0,width/4,0]) cube([width*1.4,width/2,width], center=true);
-    scale([squash,10,1]) schnur();
+    translate([0,width/4,0]) cube([width*1.4,width/2,length], center=true);
+    scale([squash,1,1]) schnur();
     hupirohr();
 }
 
 // Andere Seite
 translate([width*0,-5,0]){ // Chli verschieben, damits gäbig geht mit drucken
     difference(){
-        scale([squash,1,1]) cylinder(d=width,h=30, center=true);
-        scale([squash,1,1]) schnur();
+        scale([squash,1,1]) cylinder(d=width,h=length, center=true);
+        scale([squash,25,1]) schnur();
         hupirohr();
         // Untere Hälfte wegschneiden
-        scale([squash,1,1]) # translate([0,width/4,0]) cube([width+3,width/2,30], center=true);
+        scale([squash,1,1]) # translate([0,width/4,0]) cube([width+3,width/2,length], center=true);
         }
     }
