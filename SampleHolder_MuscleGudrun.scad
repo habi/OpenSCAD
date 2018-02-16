@@ -47,7 +47,6 @@ module cover(cylinder_diameter_top, squash, wall_thickness=1.5, lid_height=3, ni
     
 top_diameter=15;
 squash=0.5;
-rotate([0,-125,90]) {
+
 sampleholder(40, 6.2, top_diameter, squash);
 translate([0,0,80]) cover(top_diameter, squash);
-        }

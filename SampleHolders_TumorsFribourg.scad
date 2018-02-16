@@ -8,11 +8,11 @@ module sampleholder(cylinder_height,
                     pin_height=20,
                     squash_diameter=1,
                     squash_sphere=1) {
-    // We use some "fancy" trigonometry to calculate the position of the sphere on top of the pin, namely:
+    // We use a bit of trigonometry to calculate the position of the sphere on top of the pin, namely:
     //  - The radius of the pin gives us the angle where we connect.
     //  - We thus scale it to the sphere radius (cyl_diam), and take the inverse sin.
     //  - The cosine of this angle gives us the distance we have to nudge the sphere down to make it flush with the cylinder
-    sphere_center=pin_height+squash_sphere*0.5*(cylinder_diameter+wall_thickness-cylinder_diameter*(1-cos(asin(6.25/cylinder_diameter))));
+    sphere_center=squash_sphere*0.5*(cylinder_diameter+wall_thickness-cylinder_diameter*(1-cos(asin(6.25/cylinder_diameter))));
     difference() { // Cut out cylinder and sphere with given diameter from cylinder and sphere with given diameter plus wall thickness
         union() { // Collect the bottom pin, the sphere and the cylinder
             pin(height=pin_height); // Bottom pin
@@ -47,7 +47,6 @@ module sampleholder(cylinder_height,
             }
         }
     }
-        
 
 translate([ 0, 0, 0]) sampleholder(20, 25);
 translate([25, 0, 0]) sampleholder(20, 15);
