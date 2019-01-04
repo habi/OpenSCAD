@@ -4,7 +4,7 @@ innerdiameter=6.6;
 height=60; // was around ~75
 difference() {
     union() {
-        for (angle =[0:60:180-60])
+        for (angle =[0:90:180-90])
         rotate([0,0,angle])
             hull() { // 'hull' generates the tapered outer shell over the spokes
                 // spokes
@@ -21,8 +21,8 @@ for (tr=[-5:5:5])
     translate([0,0,tr]) rotate_extrude(convexity=10) translate([innerdiameter+2.85, 0, 0]) circle(r = 1);
 for (tr=[-10,10])
     translate([0,0,tr]) rotate_extrude(convexity=10) translate([innerdiameter+2.1, 0, 0]) circle(r = 1);
-for (tr=[-15,15])
-    translate([0,0,tr]) rotate_extrude(convexity=10) translate([innerdiameter+0.75, 0, 0]) circle(r = 1);
+//for (tr=[-15,15])
+  //  translate([0,0,tr]) rotate_extrude(convexity=10) translate([innerdiameter+0.75, 0, 0]) circle(r = 1);
 // inner middle separator
 for (angle =[0:60:180-60])
     rotate([0,0,angle])
