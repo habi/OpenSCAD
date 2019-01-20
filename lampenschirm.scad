@@ -5,30 +5,73 @@ $fn=100;
 // to write on the cylinders
 use <text_on_OpenSCAD/text_on.scad>
 
-hoehe = 50;
+hoehe = 85;
 durchmesser_unten = 63;
-durchmesser_oben = 100;
+durchmesser_oben = 126;
 wanddicke = 4;
 textrotation = -25;
 textsize = 9;
-extrusion_height = wanddicke/2;
+extrusion_height = wanddicke;
 
 module random_beam(diameter=wanddicke/2){
     translate([0,0,-wanddicke])
-    rotate([rands(30,180-30,1)[0], rands(30,180-30,1)[0], rands(0,180,1)[0]])
-    cylinder(h = durchmesser_oben*1.5, d = diameter, center=true);
-        }
-        
+        rotate([rands(30,180-30,1)[0], rands(30,180-30,1)[0], rands(0,180,1)[0]])
+            cylinder(h = durchmesser_oben*1.5, d = diameter, center=true);
+    }
+
 difference(){
     //difference(){
-    cylinder(h = hoehe, d1 = durchmesser_unten, d2 = durchmesser_oben, center=true);
+    cylinder(h = hoehe,
+        d1 = durchmesser_unten,
+        d2 = durchmesser_oben,
+        center=true);
     union(){
-        translate([0,0,wanddicke/2]) cylinder(h = hoehe, d1 = durchmesser_unten-wanddicke, d2 = durchmesser_oben-wanddicke, center=true);
-        for (i = [0:45:360-45]){
-            text_on_cylinder("Päppu",r1=(durchmesser_unten-wanddicke)/2,r2=(durchmesser_oben-wanddicke)/2,h=hoehe,rotate=textrotation,eastwest=0+i,cylinder_center=true, size=textsize, updown=-3*textsize,extrusion_height=extrusion_height);
-            text_on_cylinder("Mama",r1=(durchmesser_unten-wanddicke)/2,r2=(durchmesser_oben-wanddicke)/2,h=hoehe,rotate=textrotation,eastwest=5+i,cylinder_center=true, size=textsize, updown=-textsize,extrusion_height=extrusion_height);
-           text_on_cylinder("Aline",r1=(durchmesser_unten-wanddicke)/2,r2=(durchmesser_oben-wanddicke)/2,h=hoehe,rotate=textrotation,eastwest=10+i,cylinder_center=true, size=textsize, updown=textsize,extrusion_height=extrusion_height);
-        text_on_cylinder("Elio",r1=(durchmesser_unten-wanddicke)/2,r2=(durchmesser_oben-wanddicke)/2,h=hoehe,rotate=textrotation,eastwest=15+i,cylinder_center=true, size=textsize, updown=3*textsize,extrusion_height=extrusion_height);
+        translate([0,0,wanddicke/2])
+            cylinder(h = hoehe,
+                d1 = durchmesser_unten-wanddicke,
+                d2 = durchmesser_oben-wanddicke,
+                center=true);
+        for (i = [0:60:360-60]){
+            text_on_cylinder("Päppu",
+                r1=(durchmesser_unten-2*wanddicke)/2,
+                r2=(durchmesser_oben-2*wanddicke)/2,
+                h=hoehe,
+                rotate=textrotation,
+                eastwest=0+i,
+                cylinder_center=true,
+                size=textsize,
+                updown=-3*textsize,
+                extrusion_height=extrusion_height);
+            text_on_cylinder("Mama",
+                r1=(durchmesser_unten-2*wanddicke)/2,
+                r2=(durchmesser_oben-2*wanddicke)/2,
+                h=hoehe,
+                rotate=textrotation,
+                eastwest=5+i,
+                cylinder_center=true,
+                size=textsize,
+                updown=-textsize,
+                extrusion_height=extrusion_height);
+            text_on_cylinder("Aline",
+                r1=(durchmesser_unten-2*wanddicke)/2,
+                r2=(durchmesser_oben-2*wanddicke)/2,
+                h=hoehe,
+                rotate=textrotation,
+                eastwest=10+i,
+                cylinder_center=true,
+                size=textsize,
+                updown=textsize,
+                extrusion_height=extrusion_height);
+            text_on_cylinder("Elio",
+                r1=(durchmesser_unten-2*wanddicke)/2,
+                r2=(durchmesser_oben-2*wanddicke)/2,
+                h=hoehe,
+                rotate=textrotation,
+                eastwest=15+i,
+                cylinder_center=true,
+                size=textsize,
+                updown=3*textsize,
+                extrusion_height=extrusion_height);
         }
     }
         // Cutout Schraubgewinde
