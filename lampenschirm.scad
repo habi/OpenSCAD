@@ -10,8 +10,8 @@ durchmesser_unten = 63;
 durchmesser_oben = 100;
 wanddicke = 4;
 textrotation = -25;
-textsize = 9;
-extrusion_height = wanddicke/2;
+textsize = 7;
+extrusion_height = wanddicke*.618;
 
 module random_beam(diameter=wanddicke/2){
     translate([0,0,-wanddicke])
@@ -25,10 +25,10 @@ difference(){
     union(){
         translate([0,0,wanddicke/2]) cylinder(h = hoehe, d1 = durchmesser_unten-wanddicke, d2 = durchmesser_oben-wanddicke, center=true);
         for (i = [0:45:360-45]){
-            text_on_cylinder("Päppu",r1=(durchmesser_unten-wanddicke)/2,r2=(durchmesser_oben-wanddicke)/2,h=hoehe,rotate=textrotation,eastwest=0+i,cylinder_center=true, size=textsize, updown=-3*textsize,extrusion_height=extrusion_height);
-            text_on_cylinder("Mama",r1=(durchmesser_unten-wanddicke)/2,r2=(durchmesser_oben-wanddicke)/2,h=hoehe,rotate=textrotation,eastwest=5+i,cylinder_center=true, size=textsize, updown=-textsize,extrusion_height=extrusion_height);
-           text_on_cylinder("Aline",r1=(durchmesser_unten-wanddicke)/2,r2=(durchmesser_oben-wanddicke)/2,h=hoehe,rotate=textrotation,eastwest=10+i,cylinder_center=true, size=textsize, updown=textsize,extrusion_height=extrusion_height);
-        text_on_cylinder("Elio",r1=(durchmesser_unten-wanddicke)/2,r2=(durchmesser_oben-wanddicke)/2,h=hoehe,rotate=textrotation,eastwest=15+i,cylinder_center=true, size=textsize, updown=3*textsize,extrusion_height=extrusion_height);
+            text_on_cylinder("Päppu",r1=(durchmesser_unten-wanddicke)/2,r2=(durchmesser_oben-wanddicke)/2,h=hoehe,rotate=textrotation,eastwest=0+i,cylinder_center=true, size=textsize, updown=-3*textsize*.618,extrusion_height=extrusion_height);
+            text_on_cylinder("Mama",r1=(durchmesser_unten-wanddicke)/2,r2=(durchmesser_oben-wanddicke)/2,h=hoehe,rotate=textrotation,eastwest=5+i,cylinder_center=true, size=textsize, updown=-textsize*.618,extrusion_height=extrusion_height);
+           text_on_cylinder("Aline",r1=(durchmesser_unten-wanddicke)/2,r2=(durchmesser_oben-wanddicke)/2,h=hoehe,rotate=textrotation,eastwest=10+i,cylinder_center=true, size=textsize, updown=textsize*.618, extrusion_height=extrusion_height);
+        text_on_cylinder("Elio",r1=(durchmesser_unten-wanddicke)/2,r2=(durchmesser_oben-wanddicke)/2,h=hoehe,rotate=textrotation,eastwest=15+i,cylinder_center=true, size=textsize, updown=3*textsize*.618,extrusion_height=extrusion_height);
         }
     }
         // Cutout Schraubgewinde
