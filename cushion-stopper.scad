@@ -4,24 +4,21 @@
 $fn=100;
 
 // insert for slot in base board
-slot_diameter=10;
-slot_width=50;
-height=20;
+slot_diameter=5;
+slot_width=30;
+height=10;
 hull(){
     translate([0,-slot_width/2,0]) cylinder(d=slot_diameter, h=height, center=true);
     translate([0,slot_width/2,0]) cylinder(d=slot_diameter, h=height, center=true);
 }
 
-
 // cushion stopper
-stopper_width=150;
-distance=45;
+stopper_width=100;
+distance=50;
 hull(){
     translate([distance,-stopper_width/2,height]) cylinder(d=slot_diameter, h=20, center=true);
     translate([distance,stopper_width/2,height]) cylinder(d=slot_diameter, h=20, center=true);
 }
-
-
 // connector "rods
 hull(){ // center-center
     translate([distance,0,height]) cube([slot_diameter, slot_diameter, height], center=true);
@@ -68,4 +65,3 @@ hull(){
     translate([0,-slot_width/2,height/2]) sphere(d=slot_diameter, center=true);
     translate([0,slot_width/2,height/2]) sphere(d=slot_diameter, center=true);
 }
-
